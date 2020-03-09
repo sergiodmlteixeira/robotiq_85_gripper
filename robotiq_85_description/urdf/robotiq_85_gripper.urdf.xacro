@@ -53,8 +53,8 @@
             <child link="${prefix}gripper_finger2_knuckle_link"/>
             <axis xyz="0 0 1"/>
             <origin rpy="0.0 0.0 0.0" xyz="0.05490451627 -0.03060114443 0.0"/>
-            <limit lower="-3.14" upper="3.14" velocity="100.0" effort="1000"/>
-            <mimic joint="${prefix}gripper_finger1_joint"/>
+            <limit lower="0.0" upper="0.804" velocity="2.0" effort="1000"/>
+            <mimic joint="${prefix}gripper_finger1_joint" offset="0"/>
         </joint>
 
         <link name="${prefix}gripper_finger1_knuckle_link">
@@ -117,12 +117,16 @@
             <parent link="${prefix}gripper_finger1_knuckle_link"/>
             <child link="${prefix}gripper_finger1_finger_link"/>
             <origin xyz="-0.00408552455 -0.03148604435 0.0" rpy="0 0 0" />
+            <axis xyz="0 0 1"/>
+            <limit lower="0.0" upper="0.804" velocity="2.0" effort="1000"/>
         </joint>
 
         <joint name="${prefix}gripper_finger2_finger_joint" type="fixed">
             <parent link="${prefix}gripper_finger2_knuckle_link"/>
             <child link="${prefix}gripper_finger2_finger_link"/>
             <origin xyz="-0.00408552455 -0.03148604435 0.0" rpy="0 0 0" />
+            <axis xyz="0 0 1"/>
+            <limit lower="0.0" upper="0.804" velocity="2.0" effort="1000"/>
         </joint>
 
         <link name="${prefix}gripper_finger1_finger_link">
@@ -186,7 +190,7 @@
             <child link="${prefix}gripper_finger1_inner_knuckle_link"/>
             <axis xyz="0 0 1"/>
             <origin xyz="0.06142 0.0127 0" rpy="${pi} 0.0 0.0" />
-            <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+            <limit lower="0.0" upper="0.804" velocity="2.0" effort="1000"/>
             <mimic joint="${prefix}gripper_finger1_joint" offset="0"/>
         </joint>
 
@@ -195,7 +199,7 @@
             <child link="${prefix}gripper_finger2_inner_knuckle_link"/>
             <axis xyz="0 0 1"/>
             <origin xyz="0.06142 -0.0127 0" rpy="0 0 0"/>
-            <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+            <limit lower="0.0" upper="0.804" velocity="2.0" effort="1000"/>
             <mimic joint="${prefix}gripper_finger1_joint" offset="0"/>
         </joint>
 
@@ -260,7 +264,7 @@
             <child link="${prefix}gripper_finger1_finger_tip_link"/>
             <axis xyz="0 0 1"/>
             <origin xyz="0.04303959807 -0.03759940821 0.0" rpy="0.0 0.0 0.0"/>
-            <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+            <limit lower="-0.804" upper="0.0" velocity="2.0" effort="1000"/>
             <mimic joint="${prefix}gripper_finger1_joint" multiplier="-1"/>
         </joint>
 
@@ -269,7 +273,7 @@
             <child link="${prefix}gripper_finger2_finger_tip_link"/>
             <axis xyz="0 0 1"/>
             <origin rpy="0.0 0.0 0.0" xyz="0.04303959807 -0.03759940821  0.0"/>
-            <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+            <limit lower="-0.804" upper="0.0" velocity="2.0" effort="1000"/>
             <mimic joint="${prefix}gripper_finger1_joint" multiplier="-1"/>
         </joint>
 
@@ -295,11 +299,11 @@
         </link> 
         
         <gazebo reference="${prefix}gripper_finger1_finger_tip_link">
-            <implicitSpringDamper>1</implicitSpringDamper>
             <mu1>100000</mu1>
             <mu2>100000</mu2>
             <kp>100000000.0</kp>
             <kd>1.0</kd>
+            <fdir1>0 0 1</fdir1>
         </gazebo> 
 
         <link name="${prefix}gripper_finger2_finger_tip_link">
@@ -323,11 +327,11 @@
         </link>
         
         <gazebo reference="${prefix}gripper_finger2_finger_tip_link">
-            <implicitSpringDamper>1</implicitSpringDamper>
             <mu1>100000</mu1>
             <mu2>100000</mu2>
             <kp>100000000.0</kp>
             <kd>1.0</kd>
+            <fdir1>0 0 1</fdir1>
         </gazebo> 
         
         <xacro:robotiq_85_gripper_transmission prefix="${prefix}" />
